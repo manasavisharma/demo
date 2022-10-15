@@ -1,15 +1,11 @@
 package com.example.stepDefinitions;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import com.example.stepDefinitions.KeyWordLibrary;
+
 import static com.example.helpers.GenericHelpers.*;
 
-public class ABTestclss {
+public class addRemoveClss {
 
     @Then("^user can view (.*) button$")
     public void deleteButton(String button) {
