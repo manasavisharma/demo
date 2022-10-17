@@ -30,7 +30,7 @@ public class GenericHelpers {
     }
 
     public static Select findSelectBox(WebElement element, String[] selectSelector) {
-        return (Select) element.findElement(By.cssSelector(selectSelector[1]));
+        return (Select) element.findElement(By.id(selectSelector[1]));
     }
 
     static {

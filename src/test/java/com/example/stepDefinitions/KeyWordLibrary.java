@@ -86,11 +86,19 @@ public class KeyWordLibrary {
     }
 
     @And("^user selects option (.*) in (.*)$")
-    public void selectOption(String text, String locator) {
+    public void selectOption(String text, String locator) throws InterruptedException {
         String[] selectSelector = getLocatorFromDictionary(locator);
         Select selectBox = findSelectBox(driver.findElement(By.xpath("/*")),selectSelector);
-        selectBox.selectByVisibleText(text);
+//        selectBox.selectByVisibleText(text);
+        Thread.sleep(2000);
+        selectBox.selectByValue(text);
     }
+
+    @Then("^user can view (.*)$")
+    public void isDisplayed(String buttonElement) {
+        driver.findElement(By.xpath(".//*[contains(text(), '" + buttonElement + "')]")).isDisplayed();
+    }
+
 
 
 }
