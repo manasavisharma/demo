@@ -30,10 +30,10 @@ Feature: Internet Herokuapp Testing
   Scenario Outline: Check the functionality of Dropdown
     Given user navigates to <Page Type> page
     When user clicks hyperlink Dropdown
-    And user selects option Option 1 in Dropdown
+    And user selects option <Option> in Dropdown
     Examples:
-      | Page Type  |
-      | herokuurl  |
+      | Page Type  | Option   |
+      | herokuurl  | option2  |
 
 
   Scenario Outline: Check User is able to login
@@ -43,8 +43,8 @@ Feature: Internet Herokuapp Testing
     And user clicks on Sign in button
     Then user can view <Successful Message>
     Examples:
-      | Page Type | User Name | Password | Successful Message |
-      | herokuurl | admin     | admin    | |
+      | Page Type | User Name | Password |
+      | herokuurl | admin     | admin    |
 
 
   Scenario Outline: Check user can view images
@@ -68,13 +68,13 @@ Feature: Internet Herokuapp Testing
   Scenario Outline: Check the functionality of dynamic loading elements
     Given user navigates to <Page Type> page
     When user clicks hyperlink Dynamic Loading
-    And user clicks hyperlink <Example>
+    And user clicks hyperlink < >
     And user navigates to Next page
     And user clicks on <Start> button
     Then user can view <Loaded Message>
     Examples:
-      | Page Type | Example  |
-      | herokuurl | exmaple1 |
+      | Page Type |
+      | herokuurl |
 
   Scenario Outline: Check the functionality of UIelements
     Given  user navigates to <Page Type> page
@@ -94,5 +94,5 @@ Feature: Internet Herokuapp Testing
     And user clicks hyperlink click here
     Then user can view ads
     Examples:
-      | Page Type | Close |
-      | herokuurl | close |
+      | Page Type | Close      |
+      | herokuurl | closebuton |
