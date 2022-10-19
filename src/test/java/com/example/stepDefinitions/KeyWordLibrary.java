@@ -94,11 +94,14 @@ public class KeyWordLibrary {
         selectBox.selectByValue(text);
     }
 
-    @Then("^user can view (.*)$")
+    @Then("^user can view (.*) button$")
     public void isDisplayed(String buttonElement) {
         driver.findElement(By.xpath(".//*[contains(text(), '" + buttonElement + "')]")).isDisplayed();
     }
 
+    @Then("^user can view (.*)$")
+    public void isDisplay(String locator) {
 
+    }
 
 }
