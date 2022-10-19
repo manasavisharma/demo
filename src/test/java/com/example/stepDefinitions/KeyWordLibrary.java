@@ -12,7 +12,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.time.Duration;
+import java.util.List;
 
 import static com.example.helpers.GenericHelpers.*;
 
@@ -94,14 +99,45 @@ public class KeyWordLibrary {
         selectBox.selectByValue(text);
     }
 
-    @Then("^user can view (.*) button$")
+    @Then("^user can view (.*)$")
     public void isDisplayed(String buttonElement) {
         driver.findElement(By.xpath(".//*[contains(text(), '" + buttonElement + "')]")).isDisplayed();
     }
 
-    @Then("^user can view (.*)$")
-    public void isDisplay(String locator) {
+    @Then("^user can view all images on the page$")
+    public void brokenImageLinks() {
 
+        List<WebElement> images = driver.findElements(By.tagName("img"));
+        System.out.println(images.size());
+
+        for( WebElement image : images) {
+            String imageSrc = image.getAttribute("src");
+
+            try {
+                URL url = new URL(imageSrc);
+                URLConnection urlConnection = url.openConnection();
+                HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.connect();
+
+                if(httpURLConnection.getResponseCode() == 200)
+                    System.out.println(imageSrc + ">>" + httpURLConnection.getResponseCode() +
+                            ">>" +httpURLConnection.getResponseMessage());
+                else
+                    System.err.println(imageSrc + ">>" + httpURLConnection.getResponseCode() +
+                            ">>" +httpURLConnection.getResponseMessage());
+
+            } catch (IOException e) {
+                System.err.println(imageSrc);
+            }
+        }
+        driver.quit();
+    }
+
+    @And("^user enters (.*) and (.*) in the alert$")
+    public void enterValuesInAlert(String username, String password ) {
+        String URL = "https://" +username +":" +password +"@"+ "the-internet.herokuapp.com/basic_auth";
+        driver.get(URL);
     }
 
 }

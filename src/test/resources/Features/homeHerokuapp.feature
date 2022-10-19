@@ -6,7 +6,7 @@ Feature: Internet Herokuapp Testing
     Then user can view page
     Examples:
       | Page Type  |
-      | herokuurl  |
+      | heroku_url  |
 
   Scenario Outline: Check the functionality of Add Element Button
     Given user navigates to <Page Type> page
@@ -15,45 +15,44 @@ Feature: Internet Herokuapp Testing
     Then user can view Delete button
     Examples:
       | Page Type  |
-      | herokuurl  |
+      | heroku_url  |
 
 
   Scenario Outline: Check the functionality of Checkboxes
     Given user navigates to <Page Type> page
     When user clicks hyperlink Checkboxes
-    And user clicks on <Checkbox> button
+    And user clicks on Checkbox 1 button
     Examples:
-      | Page Type  | Checkbox  |
-      | herokuurl  | checkbox1 |
+      | Page Type  |
+      | heroku_url  |
 
 
   Scenario Outline: Check the functionality of Dropdown
     Given user navigates to <Page Type> page
     When user clicks hyperlink Dropdown
-    And user selects option <Option> in Dropdown
+    And user selects option Option 2 in Dropdown
     Examples:
-      | Page Type  | Option   |
-      | herokuurl  | option2  |
+      | Page Type  |
+      | heroku_url  |
 
 
   Scenario Outline: Check User is able to login
     Given user navigates to <Page Type> page
     When user clicks hyperlink Basic Auth
     And user enters <User Name> and <Password> in the alert
-    And user clicks on Sign in button
     Then user can view <Successful Message>
     Examples:
-      | Page Type | User Name | Password |
-      | herokuurl | admin     | admin    |
+      | Page Type | User Name | Password | Successful Message |
+      | heroku_url | admin     | admin    | Basic Auth         |
 
 
   Scenario Outline: Check user can view images
     Given user navigates to <Page Type> page
     When user clicks hyperlink Broken Images
-    Then user can view all images
+    Then user can view all images on the page
     Examples:
       | Page Type |
-      | Herokuurl |
+      | Heroku_url |
 
 
   Scenario Outline: Check functionality of image shuffling
@@ -63,36 +62,36 @@ Feature: Internet Herokuapp Testing
     Then user can view <Shuffle Images>
     Examples:
       | Page Type |
-      | herokuurl |
+      | heroku_url |
 
   Scenario Outline: Check the functionality of dynamic loading elements
     Given user navigates to <Page Type> page
     When user clicks hyperlink Dynamic Loading
-    And user clicks hyperlink < >
+    And user clicks hyperlink <Example>
     And user navigates to Next page
     And user clicks on <Start> button
     Then user can view <Loaded Message>
     Examples:
-      | Page Type |
-      | herokuurl |
+      | Page Type | Example  |
+      | heroku_url | example1 |
 
   Scenario Outline: Check the functionality of UIelements
     Given  user navigates to <Page Type> page
     When user clicks hyperlink Dynamic Controls
-    And user clicks on <A Checkbox> button
-    And user clicks on <Remove> button
+    And user clicks on acheckbox button
+    And user clicks on remove button
     Then user can view Add button
     Examples:
-      | Page Type | A Checkbox | Remove |
-      | herokuurl | acheckbox  | remove |
+      | Page Type |
+      | heroku_url |
 
   Scenario Outline: Check the visibility of ads on page
     Given  user navigates to <Page Type> page
     When user clicks hyperlink Entry Ad
     And user can view ads
-    And user clicks on <Close> button
+    And user clicks on close button
     And user clicks hyperlink click here
     Then user can view ads
     Examples:
-      | Page Type | Close      |
-      | herokuurl | closebuton |
+      | Page Type |
+      | heroku_url |
