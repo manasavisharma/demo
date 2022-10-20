@@ -4,8 +4,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en_scouse.An;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -23,7 +21,7 @@ import java.util.List;
 
 import static com.example.helpers.GenericHelpers.*;
 
-public class KeyWordLibrary {
+public class homeHerokuapp {
     @Given("^user navigates to (.*) page$")
     public static  void open(String url) throws InterruptedException {
         String[] locator=getLocatorFromDictionary(url);
