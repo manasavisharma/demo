@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en_scouse.An;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -100,7 +102,10 @@ public class KeyWordLibrary {
     }
 
     @Then("^user can view (.*)$")
-    public void isDisplayed(String buttonElement) {
+    public void isDisplayed(String buttonElement) throws InterruptedException {
+        Thread.sleep(5000);
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        wait.until(ExpectedConditions.invisibilityOf(By.cssSelector()));
         driver.findElement(By.xpath(".//*[contains(text(), '" + buttonElement + "')]")).isDisplayed();
     }
 
@@ -138,6 +143,17 @@ public class KeyWordLibrary {
     public void enterValuesInAlert(String username, String password ) {
         String URL = "https://" +username +":" +password +"@"+ "the-internet.herokuapp.com/basic_auth";
         driver.get(URL);
+    }
+
+    @And("^user move the mouse pointer outside of webpage$")
+    public void adsAlertPopup() throws AWTException {
+        Robot rb = new Robot();
+        rb.mouseMove(600, 0);
+    }
+
+    @And("^user select the file to upload$")
+    public void chooseFileFromLocalSystem(WebElement upload) {
+        upload.sendKeys("C:\\Users\\SONY\\Desktop\\PatientFeatureFile.txt");
     }
 
 }
