@@ -20,8 +20,9 @@ import java.time.Duration;
 import java.util.List;
 
 import static com.example.helpers.GenericHelpers.*;
+import static com.example.stepDefinitions.commonStepDefinition.clickByCssSelector;
 
-public class homeHerokuapp {
+public class KeyWordLibrary {
     @Given("^user navigates to (.*) page$")
     public static  void open(String url) throws InterruptedException {
         String[] locator=getLocatorFromDictionary(url);
@@ -55,19 +56,6 @@ public class homeHerokuapp {
         driver.findElement(By.cssSelector("#" + cssSelector)).click();
     }
 
-    @When("^user clicks hyperlink (.*)$")
-    public void clickHyperlink(String linkText) throws InterruptedException {
-        driver.findElement(By.linkText(linkText)).click();
-    }
-    public static void clickByCssSelector(String s) {
-        driver.findElement(By.cssSelector(s)).click();
-    }
-    @When("^user clicks element (.*)$")
-    public void clickElement(String linkText) throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(8));
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[contains(text(),'" + linkText + "')]")));
-        driver.findElement(By.xpath(".//*[contains(text(),'" + linkText + "')]")).click();
-    }
 
 
     @When("^user double clicks element (.*)$")
@@ -107,51 +95,6 @@ public class homeHerokuapp {
         driver.findElement(By.xpath(".//*[contains(text(), '" + buttonElement + "')]")).isDisplayed();
     }
 
-    @Then("^user can view all images on the page$")
-    public void brokenImageLinks() {
 
-        List<WebElement> images = driver.findElements(By.tagName("img"));
-        System.out.println(images.size());
-
-        for( WebElement image : images) {
-            String imageSrc = image.getAttribute("src");
-
-            try {
-                URL url = new URL(imageSrc);
-                URLConnection urlConnection = url.openConnection();
-                HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
-                httpURLConnection.setConnectTimeout(5000);
-                httpURLConnection.connect();
-
-                if(httpURLConnection.getResponseCode() == 200)
-                    System.out.println(imageSrc + ">>" + httpURLConnection.getResponseCode() +
-                            ">>" +httpURLConnection.getResponseMessage());
-                else
-                    System.err.println(imageSrc + ">>" + httpURLConnection.getResponseCode() +
-                            ">>" +httpURLConnection.getResponseMessage());
-
-            } catch (IOException e) {
-                System.err.println(imageSrc);
-            }
-        }
-        driver.quit();
-    }
-
-    @And("^user enters (.*) and (.*) in the alert$")
-    public void enterValuesInAlert(String username, String password ) {
-        String URL = "https://" +username +":" +password +"@"+ "the-internet.herokuapp.com/basic_auth";
-        driver.get(URL);
-    }
-
-    @And("^user move the mouse pointer outside of webpage$")
-    public void adsAlertPopup() throws AWTException {
-        Robot rb = new Robot();
-        rb.mouseMove(600, 0);
-    }
-
-    @And("^user select the file to upload$")
-    public void chooseFileFromLocalSystem(WebElement upload) {
-        upload.sendKeys("C:\\Users\\SONY\\Desktop\\PatientFeatureFile.txt");
-    }
 
 }

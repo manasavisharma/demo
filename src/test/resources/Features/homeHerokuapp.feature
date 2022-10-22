@@ -39,17 +39,17 @@ Feature: Internet Herokuapp Testing
   Scenario Outline: Check User is able to login
     Given user navigates to <Page Type> page
     When user clicks hyperlink Basic Auth
-    And user enters <User Name> and <Password> in the alert
+    And user sends <User Name> and <Password> in the alert
     Then user can view <Successful Message>
     Examples:
-      | Page Type | User Name | Password | Successful Message |
-      | heroku_url | admin     | admin    | Basic Auth         |
+      | Page Type  | User Name | Password | Successful Message |
+      | heroku_url | name      | password | Basic Auth         |
 
 
   Scenario Outline: Check user can view images
     Given user navigates to <Page Type> page
     When user clicks hyperlink Broken Images
-    Then user can view all images on the page
+    Then user view image links on the page
     Examples:
       | Page Type  |
       | Heroku_url |
@@ -123,7 +123,6 @@ Feature: Internet Herokuapp Testing
   Scenario Outline: Check the functionality of file uploading
     Given user navigates to <Page Type> page
     When user clicks hyperlink File Upload
-    And user clicks on Choose File button
     And user select the file to upload
     And user clicks on Upload button
     Examples:
@@ -152,3 +151,14 @@ Feature: Internet Herokuapp Testing
     Examples:
       | Page Type   | User Name | Password              |
       | heroku_url  | tomsmith  | SuperSecretPassword!  |
+
+
+  Scenario Outline: Check the functionality of current location
+    Given user navigates to <Page Type> page
+    When user clicks hyperlink Geolocation
+    And user clicks on <Where am I> button
+    And user accept alert pop up
+    Then user can view <Location>
+    Examples:
+      | Page Type | Where am I | Location |
+

@@ -5,7 +5,7 @@ Feature: Facebook Login
     When user enters value <Username> in the username input field
     And user enters value <Password> in the password input field
     And user clicks on Login button
-    Then user can view the <Successful Message>
+    Then user can view <Successful Message>
     Examples:
       | Page Type | Username | Password | Successful Message |
       | Internet  | Manasavi | Manasavi |   |
